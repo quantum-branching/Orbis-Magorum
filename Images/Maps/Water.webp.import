@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://50ni77vbvcxp"
-path="res://.godot/imported/BackgroundTop.webp-dbdb7844b4c7d6682ceb7e7e11bdcbbc.ctex"
+uid="uid://bj83s02glkv2j"
+path="res://.godot/imported/Water.webp-7a03c5a6c273b964982b2601828ff448.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Backgrounds/BackgroundTop.webp"
-dest_files=["res://.godot/imported/BackgroundTop.webp-dbdb7844b4c7d6682ceb7e7e11bdcbbc.ctex"]
+source_file="res://Images/Maps/Water.webp"
+dest_files=["res://.godot/imported/Water.webp-7a03c5a6c273b964982b2601828ff448.ctex"]
 
 [params]
 

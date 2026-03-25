@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://50ni77vbvcxp"
-path="res://.godot/imported/BackgroundTop.webp-dbdb7844b4c7d6682ceb7e7e11bdcbbc.ctex"
+uid="uid://6dadh2mdjf7l"
+path="res://.godot/imported/Gray Button.webp-329bf213e45d4569d375dc4503e759e0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Backgrounds/BackgroundTop.webp"
-dest_files=["res://.godot/imported/BackgroundTop.webp-dbdb7844b4c7d6682ceb7e7e11bdcbbc.ctex"]
+source_file="res://Images/Inputs/Gray Button.webp"
+dest_files=["res://.godot/imported/Gray Button.webp-329bf213e45d4569d375dc4503e759e0.ctex"]
 
 [params]
 

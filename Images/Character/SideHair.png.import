@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://50ni77vbvcxp"
-path="res://.godot/imported/BackgroundTop.webp-dbdb7844b4c7d6682ceb7e7e11bdcbbc.ctex"
+uid="uid://u30nmgl3jq23"
+path="res://.godot/imported/SideHair.png-7c4960286a7c6af8fc4c700fec5a3309.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Backgrounds/BackgroundTop.webp"
-dest_files=["res://.godot/imported/BackgroundTop.webp-dbdb7844b4c7d6682ceb7e7e11bdcbbc.ctex"]
+source_file="res://Images/Character/SideHair.png"
+dest_files=["res://.godot/imported/SideHair.png-7c4960286a7c6af8fc4c700fec5a3309.ctex"]
 
 [params]
 
