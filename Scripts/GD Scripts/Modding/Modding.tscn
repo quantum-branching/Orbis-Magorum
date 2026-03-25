@@ -1,0 +1,69 @@
+[gd_scene load_steps=13 format=3 uid="uid://8241wv1anxis"]
+
+[ext_resource type="Shader" uid="uid://drlooi5fx7ftm" path="res://Shaders/Main Menu/MenuBackground.gdshader" id="1_qst7s"]
+[ext_resource type="Shader" uid="uid://cabecl5f2ouoj" path="res://Shaders/Main Menu/Background.gdshader" id="3_gxt68"]
+[ext_resource type="Texture2D" uid="uid://ccjh2mt3xp73c" path="res://Shaders/Main Menu/Noise.tres" id="4_8ebar"]
+[ext_resource type="Texture2D" uid="uid://bgn8imeed25rf" path="res://Images/Backgrounds/NewBackground.webp" id="4_eu0ct"]
+[ext_resource type="Texture2D" uid="uid://dm53ldrbnar4e" path="res://Images/Backgrounds/StartGameScreen.webp" id="5_eu0ct"]
+[ext_resource type="Script" uid="uid://df21em73d78f4" path="res://Scripts/GD Scripts/Debug.gd" id="6_8rfe1"]
+[ext_resource type="Texture2D" uid="uid://buf14568jpm82" path="res://Images/Inputs/Cancel.webp" id="6_eu0ct"]
+[ext_resource type="Script" uid="uid://cvnliq1132ucj" path="res://Scripts/GD Scripts/Select Character/exit.gd" id="7_su7di"]
+[ext_resource type="Script" uid="uid://4qd724mk11rl" path="res://Scripts/GD Scripts/Modding/new_character_screen.gd" id="8_jkpfh"]
+[ext_resource type="Texture2D" uid="uid://bj5dlcjjbmebo" path="res://Images/UI/Toggles/ClassIconMod.webp" id="9_eu0ct"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bpowq"]
+shader = ExtResource("1_qst7s")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_clvpl"]
+shader = ExtResource("3_gxt68")
+shader_parameter/Noise1 = ExtResource("4_8ebar")
+
+[node name="Node2D" type="Node2D"]
+material = SubResource("ShaderMaterial_bpowq")
+
+[node name="Background" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_clvpl")
+scale = Vector2(5, 2.833)
+texture = ExtResource("4_eu0ct")
+
+[node name="UI Background" type="Sprite2D" parent="."]
+use_parent_material = true
+scale = Vector2(5.556, 4.644)
+texture = ExtResource("5_eu0ct")
+
+[node name="Cancel UI" type="TextureButton" parent="."]
+use_parent_material = true
+offset_left = 295.0
+offset_top = -176.111
+offset_right = 311.0
+offset_bottom = -160.111
+scale = Vector2(1.389, 1.389)
+texture_normal = ExtResource("6_eu0ct")
+script = ExtResource("7_su7di")
+
+[node name="Debug" type="RichTextLabel" parent="."]
+offset_left = -320.0
+offset_top = -180.0
+offset_right = 320.0
+offset_bottom = 180.0
+mouse_filter = 2
+bbcode_enabled = true
+script = ExtResource("6_8rfe1")
+
+[node name="New Character Screen" type="TextureButton" parent="."]
+use_parent_material = true
+offset_left = -283.889
+offset_top = -145.556
+offset_right = -203.889
+offset_bottom = -65.556
+tooltip_text = "Toggle the new character screen."
+toggle_mode = true
+texture_normal = ExtResource("9_eu0ct")
+texture_pressed = ExtResource("9_eu0ct")
+texture_hover = ExtResource("9_eu0ct")
+texture_disabled = ExtResource("9_eu0ct")
+texture_focused = ExtResource("9_eu0ct")
+script = ExtResource("8_jkpfh")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+use_parent_material = true

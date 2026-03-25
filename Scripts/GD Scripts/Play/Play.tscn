@@ -1,0 +1,242 @@
+[gd_scene load_steps=26 format=3 uid="uid://b4qnets26dawj"]
+
+[ext_resource type="Material" uid="uid://h7ifptq0iyy0" path="res://Shaders/Time/BasicShader.tres" id="1_e4grq"]
+[ext_resource type="Script" uid="uid://ct8q66uo78e66" path="res://Scripts/GD Scripts/Test/CPU Renderer.gd" id="1_xk6is"]
+[ext_resource type="Texture2D" uid="uid://dtkn2q055g5sn" path="res://Images/Maps/Map.webp" id="2_e4grq"]
+[ext_resource type="Material" uid="uid://vkinud7mn3fc" path="res://Shaders/GPU Compute/Map.tres" id="3_gvlfo"]
+[ext_resource type="Texture2D" uid="uid://trwu6yv1cjsa" path="res://Images/UI/WhiteBackground.webp" id="4_i51er"]
+[ext_resource type="Script" uid="uid://df21em73d78f4" path="res://Scripts/GD Scripts/Debug.gd" id="5_jar2g"]
+[ext_resource type="Shader" uid="uid://dphuc8up4rwl0" path="res://Shaders/Read Character.gdshader" id="6_hajxb"]
+[ext_resource type="Texture2D" uid="uid://dya2s48ehr8ru" path="res://Images/Character/CharacterFront.webp" id="7_o1aph"]
+[ext_resource type="Script" uid="uid://bhttnmdtda23q" path="res://Scripts/GD Scripts/Play/player.gd" id="8_3yb73"]
+[ext_resource type="Texture2D" uid="uid://coj8mse6dwvro" path="res://Images/UI/WhiteProgressBar.png" id="9_hi86t"]
+[ext_resource type="Texture2D" uid="uid://b70b53ti70ux2" path="res://Other Resources/Encounter.tres" id="10_gvlfo"]
+[ext_resource type="Texture2D" uid="uid://c3umm1jhp5kw1" path="res://Images/UI/ProgreeBarOutline.png" id="10_phhl4"]
+[ext_resource type="Script" uid="uid://c237ietc3n7l0" path="res://Scripts/GD Scripts/Play/hp_bar.gd" id="11_0g7ii"]
+[ext_resource type="Script" uid="uid://dnll7w5idxtb1" path="res://Scripts/GD Scripts/Play/mana_bar.gd" id="12_q1j3s"]
+[ext_resource type="Script" uid="uid://dm0k1fecfgoio" path="res://Scripts/GD Scripts/Play/hp_label.gd" id="13_3jh76"]
+[ext_resource type="Script" uid="uid://bj603wirbyafb" path="res://Scripts/GD Scripts/Play/mana_label.gd" id="14_0wnnx"]
+[ext_resource type="Script" uid="uid://5uw8ld5wiqgm" path="res://Images/Icons/Icon Scripts/ButtonIcon.gd" id="15_iertq"]
+[ext_resource type="Texture2D" uid="uid://dx07m7kcn8ep7" path="res://Images/Inputs/DPad.webp" id="16_4t3pf"]
+[ext_resource type="Texture2D" uid="uid://buf14568jpm82" path="res://Images/Inputs/Cancel.webp" id="17_sbjqf"]
+[ext_resource type="Script" uid="uid://c5k6ic061c6fv" path="res://Scripts/GD Scripts/Play/Exit.gd" id="18_6bisw"]
+[ext_resource type="Texture2D" uid="uid://d1u66t4g3aik8" path="res://Images/Icons/MapIcon.webp" id="19_bi3e4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rujhg"]
+shader = ExtResource("6_hajxb")
+shader_parameter/HatColorOverride = Color(0, 0, 0, 0)
+shader_parameter/ChestColorOverride = Color(0, 0, 0, 0)
+shader_parameter/BootColorOverride = Color(0, 0, 0, 0)
+shader_parameter/ArmorTypeOverride = -1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_851bh"]
+size = Vector2(64, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hkx1f"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yk1c4"]
+size = Vector2(64, 64)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CPU Renderer" type="Sprite2D" parent="."]
+material = ExtResource("1_e4grq")
+script = ExtResource("1_xk6is")
+MapTexture = ExtResource("2_e4grq")
+
+[node name="GPU Renderer" type="Sprite2D" parent="."]
+material = ExtResource("3_gvlfo")
+scale = Vector2(640, 360)
+texture = ExtResource("4_i51er")
+
+[node name="Debug" type="RichTextLabel" parent="."]
+visible = false
+offset_left = -320.0
+offset_top = -180.0
+offset_right = 320.0
+offset_bottom = 180.0
+mouse_filter = 2
+bbcode_enabled = true
+script = ExtResource("5_jar2g")
+
+[node name="Player" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_rujhg")
+position = Vector2(8, 4)
+texture = ExtResource("7_o1aph")
+script = ExtResource("8_3yb73")
+MapTexture = ExtResource("2_e4grq")
+EncounterNoise = ExtResource("10_gvlfo")
+
+[node name="UI Elements" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HP Bar" type="TextureProgressBar" parent="UI Elements"]
+layout_mode = 0
+offset_left = -316.667
+offset_top = -175.0
+offset_right = -252.667
+offset_bottom = -159.0
+scale = Vector2(2.778, 1.667)
+tooltip_text = "Number of hit points. Typically
+the higher the better. However,
+any number above zero is ideal.
+If you are out of combat your
+health will regen."
+step = 0.0
+value = 100.0
+texture_under = ExtResource("9_hi86t")
+texture_over = ExtResource("10_phhl4")
+texture_progress = ExtResource("9_hi86t")
+tint_under = Color(0.5, 1, 0.5, 0.5)
+tint_progress = Color(0, 1, 0, 1)
+script = ExtResource("11_0g7ii")
+
+[node name="Mana Bar" type="TextureProgressBar" parent="UI Elements"]
+layout_mode = 0
+offset_left = -316.667
+offset_top = -147.222
+offset_right = -252.667
+offset_bottom = -131.222
+scale = Vector2(2.778, 1.667)
+tooltip_text = "Nearly every action uses mana.
+Mana is restored through some 
+actions or when out of combat.
+Some classes have more mana than
+others although this should 
+not have any bearing on their dps."
+step = 0.0
+value = 100.0
+texture_under = ExtResource("9_hi86t")
+texture_over = ExtResource("10_phhl4")
+texture_progress = ExtResource("9_hi86t")
+tint_under = Color(0.5, 0.5, 1, 0.5)
+tint_progress = Color(0, 0, 1, 1)
+script = ExtResource("12_q1j3s")
+
+[node name="HPLabel" type="Label" parent="UI Elements"]
+layout_mode = 0
+offset_left = -313.889
+offset_top = -172.222
+offset_right = -13.889
+offset_bottom = -137.222
+scale = Vector2(0.556, 0.556)
+theme_override_font_sizes/font_size = 25
+text = "HP/MaxHP"
+horizontal_alignment = 1
+script = ExtResource("13_3jh76")
+
+[node name="ManaLabel" type="Label" parent="UI Elements"]
+layout_mode = 0
+offset_left = -313.889
+offset_top = -142.778
+offset_right = -13.889
+offset_bottom = -107.778
+scale = Vector2(0.556, 0.556)
+theme_override_font_sizes/font_size = 25
+text = "Mana/MaxMana"
+horizontal_alignment = 1
+script = ExtResource("14_0wnnx")
+
+[node name="Debug" type="RichTextLabel" parent="UI Elements"]
+layout_mode = 0
+offset_left = -320.0
+offset_top = -180.0
+offset_right = 320.0
+offset_bottom = 180.0
+mouse_filter = 2
+bbcode_enabled = true
+script = ExtResource("5_jar2g")
+
+[node name="Mobile Elements" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Touch DPad" type="Control" parent="Mobile Elements"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -280.556
+offset_top = 125.0
+offset_right = -240.556
+offset_bottom = 165.0
+scale = Vector2(0.417, 0.417)
+mouse_filter = 1
+script = ExtResource("15_iertq")
+
+[node name="Left DP" type="TouchScreenButton" parent="Mobile Elements/Touch DPad"]
+position = Vector2(34, 0)
+scale = Vector2(-2, 2.5)
+texture_normal = ExtResource("16_4t3pf")
+texture_pressed = ExtResource("16_4t3pf")
+shape = SubResource("RectangleShape2D_851bh")
+action = "Left"
+visibility_mode = 1
+script = ExtResource("15_iertq")
+
+[node name="Right DP" type="TouchScreenButton" parent="Mobile Elements/Touch DPad"]
+position = Vector2(6, 0)
+scale = Vector2(2, 2.5)
+texture_normal = ExtResource("16_4t3pf")
+texture_pressed = ExtResource("16_4t3pf")
+shape = SubResource("RectangleShape2D_851bh")
+action = "Right"
+visibility_mode = 1
+script = ExtResource("15_iertq")
+
+[node name="Up DP" type="TouchScreenButton" parent="Mobile Elements/Touch DPad"]
+position = Vector2(0, 34)
+rotation = -1.5708
+scale = Vector2(2, 2.5)
+texture_normal = ExtResource("16_4t3pf")
+texture_pressed = ExtResource("16_4t3pf")
+shape = SubResource("RectangleShape2D_851bh")
+action = "Up"
+visibility_mode = 1
+script = ExtResource("15_iertq")
+
+[node name="Down DP" type="TouchScreenButton" parent="Mobile Elements/Touch DPad"]
+position = Vector2(0, 6)
+rotation = -1.5708
+scale = Vector2(-2, 2.5)
+texture_normal = ExtResource("16_4t3pf")
+texture_pressed = ExtResource("16_4t3pf")
+shape = SubResource("RectangleShape2D_851bh")
+action = "Down"
+visibility_mode = 1
+script = ExtResource("15_iertq")
+
+[node name="Exit" type="TouchScreenButton" parent="Mobile Elements"]
+position = Vector2(295, -176.111)
+scale = Vector2(1.389, 1.389)
+texture_normal = ExtResource("17_sbjqf")
+texture_pressed = ExtResource("17_sbjqf")
+shape = SubResource("RectangleShape2D_hkx1f")
+action = "Escape"
+visibility_mode = 1
+script = ExtResource("18_6bisw")
+
+[node name="Map" type="TouchScreenButton" parent="Mobile Elements"]
+position = Vector2(277.778, 172.222)
+rotation = -1.5708
+scale = Vector2(0.556, 0.556)
+texture_normal = ExtResource("19_bi3e4")
+texture_pressed = ExtResource("19_bi3e4")
+shape = SubResource("RectangleShape2D_yk1c4")
+action = "M"
+visibility_mode = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+use_parent_material = true
+scale = Vector2(2.4, 2.006)
+
+[node name="Time Left" type="Label" parent="."]
+offset_left = 224.0
+offset_top = 112.0
+offset_right = 320.0
+offset_bottom = 136.0
+horizontal_alignment = 2

@@ -1,0 +1,194 @@
+[gd_scene load_steps=22 format=3 uid="uid://bpj6nfe8rvyjm"]
+
+[ext_resource type="Material" uid="uid://h7ifptq0iyy0" path="res://Shaders/Time/BasicShader.tres" id="1_ifce8"]
+[ext_resource type="Script" uid="uid://hefltxt0mkvd" path="res://Scripts/GD Scripts/Settings/Settings.gd" id="2_217vv"]
+[ext_resource type="Shader" uid="uid://cabecl5f2ouoj" path="res://Shaders/Main Menu/Background.gdshader" id="3_2esm2"]
+[ext_resource type="Texture2D" uid="uid://bgn8imeed25rf" path="res://Images/Backgrounds/NewBackground.webp" id="4_2esm2"]
+[ext_resource type="Script" uid="uid://wqkjfbvkf2ld" path="res://Scripts/GD Scripts/Settings/window_mode_setting.gd" id="4_05uqj"]
+[ext_resource type="Texture2D" uid="uid://ccjh2mt3xp73c" path="res://Shaders/Main Menu/Noise.tres" id="4_217vv"]
+[ext_resource type="Texture2D" uid="uid://dm53ldrbnar4e" path="res://Images/Backgrounds/StartGameScreen.webp" id="6_2esm2"]
+[ext_resource type="Shader" uid="uid://drlooi5fx7ftm" path="res://Shaders/Main Menu/MenuBackground.gdshader" id="6_217vv"]
+[ext_resource type="Texture2D" uid="uid://cgx7pkfrk1s3d" path="res://Images/Inputs/FullscreenIcon.webp" id="7_2esm2"]
+[ext_resource type="Script" uid="uid://cvnliq1132ucj" path="res://Scripts/GD Scripts/Select Character/exit.gd" id="7_owrnp"]
+[ext_resource type="Texture2D" uid="uid://brbc63bc7i24h" path="res://Images/Inputs/WindowedIcon.webp" id="8_217vv"]
+[ext_resource type="Texture2D" uid="uid://biy0a257iwlex" path="res://Images/Inputs/ReducedWindowIcon.webp" id="9_b72f1"]
+[ext_resource type="Script" uid="uid://cws2rbgyqa6ie" path="res://Scripts/GD Scripts/Settings/DeleteData.gd" id="10_1p2qx"]
+[ext_resource type="Texture2D" uid="uid://buf14568jpm82" path="res://Images/Inputs/Cancel.webp" id="12_2esm2"]
+[ext_resource type="Texture2D" uid="uid://o5wmgn5qftyi" path="res://Images/UI/Trash.webp" id="14_217vv"]
+[ext_resource type="Script" uid="uid://df21em73d78f4" path="res://Scripts/GD Scripts/Debug.gd" id="14_h6n0h"]
+[ext_resource type="Script" uid="uid://bqbul1r6tfxu4" path="res://Scripts/GD Scripts/Settings/Difficulty.gd" id="19_217vv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cisol"]
+shader = ExtResource("3_2esm2")
+shader_parameter/Noise1 = ExtResource("4_217vv")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2esm2"]
+shader = ExtResource("6_217vv")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_217vv"]
+shader = ExtResource("6_217vv")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b72f1"]
+shader = ExtResource("6_217vv")
+
+[node name="Node2D" type="Node2D"]
+material = ExtResource("1_ifce8")
+script = ExtResource("2_217vv")
+
+[node name="Background" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_cisol")
+scale = Vector2(5, 2.833)
+texture = ExtResource("4_2esm2")
+
+[node name="UI Background" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_2esm2")
+scale = Vector2(5.556, 4.644)
+texture = ExtResource("6_2esm2")
+
+[node name="WindowModeSetting" type="OptionButton" parent="."]
+offset_left = -291.664
+offset_top = -124.987
+offset_right = 8.336
+offset_bottom = -79.987
+scale = Vector2(0.556, 0.556)
+item_count = 3
+popup/item_0/text = "Fullscreen"
+popup/item_0/icon = ExtResource("7_2esm2")
+popup/item_0/id = 0
+popup/item_1/text = "Windowed"
+popup/item_1/icon = ExtResource("8_217vv")
+popup/item_1/id = 1
+popup/item_2/text = "Reduced Window"
+popup/item_2/icon = ExtResource("9_b72f1")
+popup/item_2/id = 2
+script = ExtResource("4_05uqj")
+
+[node name="WindowModeLabel" type="Label" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_left = -283.605
+offset_top = -144.43
+offset_right = -103.605
+offset_bottom = -109.43
+scale = Vector2(0.556, 0.556)
+theme_override_font_sizes/font_size = 25
+text = "Window Mode:"
+
+[node name="CombatSpeedSetting" type="SpinBox" parent="."]
+offset_left = -291.664
+offset_top = -77.778
+offset_right = 8.336
+offset_bottom = -32.778
+scale = Vector2(0.556, 0.556)
+min_value = 0.1
+max_value = 10.0
+step = 0.1
+value = 1.0
+
+[node name="CombatSpeedLabel" type="Label" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_left = -283.889
+offset_top = -97.222
+offset_right = -103.889
+offset_bottom = -62.222
+scale = Vector2(0.555, 0.555)
+theme_override_font_sizes/font_size = 25
+text = "Battle Speed:"
+
+[node name="Exit" type="TextureButton" parent="."]
+material = SubResource("ShaderMaterial_217vv")
+offset_left = 295.0
+offset_top = -176.111
+offset_right = 311.0
+offset_bottom = -160.111
+scale = Vector2(1.389, 1.389)
+texture_normal = ExtResource("12_2esm2")
+script = ExtResource("7_owrnp")
+
+[node name="Delete Data" type="TextureButton" parent="."]
+material = SubResource("ShaderMaterial_b72f1")
+offset_left = 238.331
+offset_top = 134.987
+offset_right = 254.331
+offset_bottom = 150.987
+scale = Vector2(1.667, 1.667)
+tooltip_text = "Deletes Saved Data"
+texture_normal = ExtResource("14_217vv")
+texture_pressed = ExtResource("14_217vv")
+texture_hover = ExtResource("14_217vv")
+texture_disabled = ExtResource("14_217vv")
+texture_focused = ExtResource("14_217vv")
+script = ExtResource("10_1p2qx")
+
+[node name="Brightness" type="Label" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_left = -283.889
+offset_top = -48.667
+offset_right = -41.889
+offset_bottom = -13.667
+scale = Vector2(0.556, 0.556)
+theme_override_font_sizes/font_size = 25
+text = "Brightness:"
+
+[node name="BrightnessSlider" type="HSlider" parent="."]
+offset_left = -291.667
+offset_top = -29.222
+offset_right = 8.33301
+offset_bottom = -6.722
+scale = Vector2(0.555, 0.555)
+step = 0.0
+value = 50.0
+
+[node name="Difficulty" type="Label" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_left = -283.889
+offset_top = -15.333
+offset_right = -41.889
+offset_bottom = 19.667
+scale = Vector2(0.556, 0.556)
+theme_override_font_sizes/font_size = 25
+text = "Difficulty:"
+
+[node name="Difficulty Slider" type="HSlider" parent="."]
+offset_left = -291.667
+offset_top = 4.111
+offset_right = 8.33301
+offset_bottom = 26.611
+scale = Vector2(0.556, 0.556)
+max_value = 5.0
+rounded = true
+script = ExtResource("19_217vv")
+
+[node name="Terrain Renderer" type="Label" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_left = -283.889
+offset_top = 18.0
+offset_right = -41.889
+offset_bottom = 53.0
+scale = Vector2(0.556, 0.556)
+theme_override_font_sizes/font_size = 25
+text = "Terrain Method:"
+
+[node name="TerrainRenderer" type="OptionButton" parent="."]
+offset_left = -291.664
+offset_top = 38.0
+offset_right = 8.336
+offset_bottom = 83.0
+scale = Vector2(0.556, 0.556)
+theme_override_font_sizes/font_size = 16
+item_count = 2
+popup/item_0/text = "CPU Rendering"
+popup/item_0/id = 0
+popup/item_1/text = "GPU Rendering"
+popup/item_1/id = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+use_parent_material = true
+
+[node name="Debug" type="RichTextLabel" parent="."]
+offset_left = -320.0
+offset_top = -180.0
+offset_right = 320.0
+offset_bottom = 180.0
+mouse_filter = 2
+bbcode_enabled = true
+script = ExtResource("14_h6n0h")

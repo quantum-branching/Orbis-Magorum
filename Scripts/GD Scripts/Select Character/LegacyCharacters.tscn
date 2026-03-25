@@ -1,0 +1,246 @@
+[gd_scene load_steps=33 format=3 uid="uid://b1v8fq3m4hhxu"]
+
+[ext_resource type="Shader" uid="uid://drlooi5fx7ftm" path="res://Shaders/Main Menu/MenuBackground.gdshader" id="1_lqhg4"]
+[ext_resource type="Shader" uid="uid://cabecl5f2ouoj" path="res://Shaders/Main Menu/Background.gdshader" id="2_25ro2"]
+[ext_resource type="Texture2D" uid="uid://ccjh2mt3xp73c" path="res://Shaders/Main Menu/Noise.tres" id="3_g7kff"]
+[ext_resource type="Texture2D" uid="uid://bgn8imeed25rf" path="res://Images/Backgrounds/NewBackground.webp" id="4_83y1b"]
+[ext_resource type="Texture2D" uid="uid://dm53ldrbnar4e" path="res://Images/Backgrounds/StartGameScreen.webp" id="5_0j6ai"]
+[ext_resource type="Script" uid="uid://dybqckpx7k58j" path="res://Images/Icons/Icon Scripts/Background.gd" id="6_v76f8"]
+[ext_resource type="Texture2D" uid="uid://vt76xr8r5jfq" path="res://Images/Inputs/White Button.webp" id="7_ltlpd"]
+[ext_resource type="Texture2D" uid="uid://c06uqcoxjid6m" path="res://Images/Inputs/Green Button.webp" id="8_b0rh7"]
+[ext_resource type="Script" uid="uid://qjjei5pxbunv" path="res://Scripts/GD Scripts/Select Character/create_character.gd" id="9_0jdgg"]
+[ext_resource type="Script" uid="uid://svckrauuuhir" path="res://Images/Icons/Icon Scripts/TextIcon.gd" id="10_oi1r1"]
+[ext_resource type="Texture2D" uid="uid://buf14568jpm82" path="res://Images/Inputs/Cancel.webp" id="11_6fxqc"]
+[ext_resource type="Script" uid="uid://cvnliq1132ucj" path="res://Scripts/GD Scripts/Select Character/exit.gd" id="12_c3ut5"]
+[ext_resource type="Texture2D" uid="uid://i8t736ksndsn" path="res://Images/UI/Class Icons/Druid.webp" id="13_lqhg4"]
+[ext_resource type="Texture2D" uid="uid://bj0ba1164sv1h" path="res://Images/UI/Class Icons/Hunter.webp" id="14_25ro2"]
+[ext_resource type="Texture2D" uid="uid://by6sjcbshxwxi" path="res://Images/UI/Class Icons/Mage.webp" id="15_g7kff"]
+[ext_resource type="Texture2D" uid="uid://cbr3eq5wmh1xl" path="res://Images/UI/Class Icons/Paladin.webp" id="16_83y1b"]
+[ext_resource type="Texture2D" uid="uid://c4vae151hdiqf" path="res://Images/UI/Class Icons/Priest.webp" id="17_0j6ai"]
+[ext_resource type="Texture2D" uid="uid://bsrwoqq2imso1" path="res://Images/UI/Class Icons/Rogue.webp" id="18_v76f8"]
+[ext_resource type="Texture2D" uid="uid://baorvn8562g0j" path="res://Images/UI/Class Icons/Shaman.webp" id="19_ltlpd"]
+[ext_resource type="Texture2D" uid="uid://bvht763p66gi" path="res://Images/UI/Class Icons/Warlock.webp" id="20_b0rh7"]
+[ext_resource type="Texture2D" uid="uid://dk2c8vel7mw4c" path="res://Images/UI/Class Icons/Warrior.webp" id="21_0jdgg"]
+[ext_resource type="Script" uid="uid://crmw7td48biga" path="res://Scripts/GD Scripts/Select Character/class_list.gd" id="22_lcc04"]
+[ext_resource type="Texture2D" uid="uid://jrxkf6i5ptix" path="res://Images/UI/Race Icons/Gnome.webp" id="23_1n7qp"]
+[ext_resource type="Texture2D" uid="uid://baj8ii6olopbn" path="res://Images/UI/Race Icons/Dwarf.webp" id="24_xiexq"]
+[ext_resource type="Texture2D" uid="uid://kdqlq183wn46" path="res://Images/UI/Race Icons/Human.webp" id="25_6nnv2"]
+[ext_resource type="Texture2D" uid="uid://fjuy5e2l4alt" path="res://Images/UI/Race Icons/Elf.webp" id="26_sltph"]
+[ext_resource type="Script" uid="uid://boo6ubcx21f6m" path="res://Scripts/GD Scripts/Select Character/race_list.gd" id="27_yrx17"]
+[ext_resource type="Script" uid="uid://baax5irnq7gtl" path="res://Scripts/GD Scripts/Select Character/saved_characters.gd" id="28_3v6f4"]
+[ext_resource type="Script" uid="uid://dew7q0daqq6gh" path="res://Scripts/GD Scripts/Select Character/EnterGame.gd" id="29_8bkyu"]
+[ext_resource type="Script" uid="uid://df21em73d78f4" path="res://Scripts/GD Scripts/Debug.gd" id="30_4pnxf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6wmk3"]
+shader = ExtResource("1_lqhg4")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_815cx"]
+shader = ExtResource("2_25ro2")
+shader_parameter/Noise1 = ExtResource("3_g7kff")
+
+[node name="Node2D" type="Node2D"]
+material = SubResource("ShaderMaterial_6wmk3")
+
+[node name="Background" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_815cx")
+scale = Vector2(5, 2.833)
+texture = ExtResource("4_83y1b")
+
+[node name="UI Background" type="Sprite2D" parent="."]
+use_parent_material = true
+scale = Vector2(5.556, 4.644)
+texture = ExtResource("5_0j6ai")
+script = ExtResource("6_v76f8")
+
+[node name="Create Character" type="TextureButton" parent="."]
+use_parent_material = true
+offset_left = 102.778
+offset_top = 105.556
+offset_right = 166.778
+offset_bottom = 121.556
+scale = Vector2(2.778, 2.778)
+texture_normal = ExtResource("7_ltlpd")
+texture_hover = ExtResource("8_b0rh7")
+script = ExtResource("9_0jdgg")
+
+[node name="Create Character Text" type="RichTextLabel" parent="Create Character"]
+auto_translate_mode = 1
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 5.2
+offset_top = -3.4
+offset_right = 148.2
+offset_bottom = 54.6
+scale = Vector2(0.4, 0.4)
+mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 40
+text = "Create"
+script = ExtResource("10_oi1r1")
+
+[node name="Cancel UI" type="TextureButton" parent="."]
+use_parent_material = true
+offset_left = 295.0
+offset_top = -176.111
+offset_right = 311.0
+offset_bottom = -160.111
+scale = Vector2(1.389, 1.389)
+texture_normal = ExtResource("11_6fxqc")
+script = ExtResource("12_c3ut5")
+
+[node name="Class List" type="OptionButton" parent="."]
+use_parent_material = true
+offset_left = 97.222
+offset_top = -66.667
+offset_right = 397.222
+offset_bottom = -21.667
+scale = Vector2(0.556, 0.556)
+toggle_mode = false
+item_count = 9
+popup/item_0/text = "Druid"
+popup/item_0/icon = ExtResource("13_lqhg4")
+popup/item_0/id = 0
+popup/item_1/text = "Hunter"
+popup/item_1/icon = ExtResource("14_25ro2")
+popup/item_1/id = 1
+popup/item_2/text = "Mage"
+popup/item_2/icon = ExtResource("15_g7kff")
+popup/item_2/id = 2
+popup/item_3/text = "Paladin"
+popup/item_3/icon = ExtResource("16_83y1b")
+popup/item_3/id = 3
+popup/item_4/text = "Priest"
+popup/item_4/icon = ExtResource("17_0j6ai")
+popup/item_4/id = 4
+popup/item_5/text = "Rogue"
+popup/item_5/icon = ExtResource("18_v76f8")
+popup/item_5/id = 5
+popup/item_6/text = "Shaman"
+popup/item_6/icon = ExtResource("19_ltlpd")
+popup/item_6/id = 6
+popup/item_7/text = "Warlock"
+popup/item_7/icon = ExtResource("20_b0rh7")
+popup/item_7/id = 7
+popup/item_7/disabled = true
+popup/item_8/text = "Warrior"
+popup/item_8/icon = ExtResource("21_0jdgg")
+popup/item_8/id = 8
+popup/item_8/disabled = true
+script = ExtResource("22_lcc04")
+
+[node name="Race List" type="OptionButton" parent="."]
+use_parent_material = true
+offset_left = 97.222
+offset_right = 397.222
+offset_bottom = 45.0
+scale = Vector2(0.556, 0.556)
+toggle_mode = false
+item_count = 4
+popup/item_0/text = "Gnome"
+popup/item_0/icon = ExtResource("23_1n7qp")
+popup/item_0/id = 0
+popup/item_1/text = "Dwarf"
+popup/item_1/icon = ExtResource("24_xiexq")
+popup/item_1/id = 1
+popup/item_2/text = "Human"
+popup/item_2/icon = ExtResource("25_6nnv2")
+popup/item_2/id = 2
+popup/item_3/text = "Elf"
+popup/item_3/icon = ExtResource("26_sltph")
+popup/item_3/id = 3
+script = ExtResource("27_yrx17")
+
+[node name="Saved Characters" type="OptionButton" parent="."]
+use_parent_material = true
+offset_left = -277.778
+offset_top = -100.0
+offset_right = 322.222
+offset_bottom = -55.0
+scale = Vector2(0.556, 0.556)
+script = ExtResource("28_3v6f4")
+
+[node name="Name" type="LineEdit" parent="."]
+use_parent_material = true
+offset_left = 97.222
+offset_top = 66.667
+offset_right = 397.222
+offset_bottom = 111.667
+scale = Vector2(0.556, 0.556)
+mouse_default_cursor_shape = 0
+
+[node name="Class Label" type="Label" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_left = 105.556
+offset_top = -102.778
+offset_right = 246.556
+offset_bottom = -33.778
+scale = Vector2(0.694, 0.555)
+theme_override_font_sizes/font_size = 50
+text = "Class:"
+script = ExtResource("10_oi1r1")
+
+[node name="RaceLabel" type="Label" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_left = 105.556
+offset_top = -36.111
+offset_right = 246.556
+offset_bottom = 32.889
+scale = Vector2(0.694, 0.555)
+theme_override_font_sizes/font_size = 50
+text = "Race:"
+script = ExtResource("10_oi1r1")
+
+[node name="NameLabel" type="Label" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_left = 105.556
+offset_top = 33.333
+offset_right = 264.556
+offset_bottom = 102.333
+scale = Vector2(0.694, 0.555)
+theme_override_font_sizes/font_size = 50
+text = "Name:"
+script = ExtResource("10_oi1r1")
+
+[node name="SavedCharacterLabel" type="Label" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_left = -275.556
+offset_top = -142.222
+offset_right = 132.444
+offset_bottom = -73.222
+scale = Vector2(0.694, 0.555)
+theme_override_font_sizes/font_size = 50
+text = "Saved Character:"
+script = ExtResource("10_oi1r1")
+
+[node name="Enter Game" type="TextureButton" parent="."]
+use_parent_material = true
+offset_left = -236.111
+offset_top = 105.556
+offset_right = -172.111
+offset_bottom = 121.556
+scale = Vector2(4.167, 2.778)
+mouse_filter = 1
+texture_normal = ExtResource("7_ltlpd")
+texture_hover = ExtResource("8_b0rh7")
+script = ExtResource("29_8bkyu")
+
+[node name="Label" type="Label" parent="Enter Game"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 4.0
+offset_right = 145.0
+offset_bottom = 28.0
+scale = Vector2(0.4, 0.532)
+theme_override_font_sizes/font_size = 20
+text = "Play Character"
+script = ExtResource("10_oi1r1")
+
+[node name="Debug" type="RichTextLabel" parent="."]
+offset_left = -320.0
+offset_top = -180.0
+offset_right = 320.0
+offset_bottom = 180.0
+mouse_filter = 2
+bbcode_enabled = true
+script = ExtResource("30_4pnxf")
+
+[node name="Camera2D" type="Camera2D" parent="."]

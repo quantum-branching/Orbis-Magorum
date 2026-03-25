@@ -1,0 +1,188 @@
+[gd_scene load_steps=24 format=3 uid="uid://dctbmjr07tei"]
+
+[ext_resource type="Material" uid="uid://h7ifptq0iyy0" path="res://Shaders/Time/BasicShader.tres" id="1_yruvp"]
+[ext_resource type="Texture2D" uid="uid://trwu6yv1cjsa" path="res://Images/UI/WhiteBackground.webp" id="2_yruvp"]
+[ext_resource type="Texture2D" uid="uid://50ni77vbvcxp" path="res://Images/Backgrounds/BackgroundTop.webp" id="3_8helk"]
+[ext_resource type="Shader" uid="uid://cqqlqlhcaeuc1" path="res://Shaders/Background/SelectCharacter.gdshader" id="4_welwi"]
+[ext_resource type="Texture2D" uid="uid://c06uqcoxjid6m" path="res://Images/Inputs/Green Button.webp" id="8_l281y"]
+[ext_resource type="Script" uid="uid://cvnliq1132ucj" path="res://Scripts/GD Scripts/Select Character/exit.gd" id="8_t5sy5"]
+[ext_resource type="Texture2D" uid="uid://buf14568jpm82" path="res://Images/Inputs/Cancel.webp" id="11_l281y"]
+[ext_resource type="Shader" uid="uid://dphuc8up4rwl0" path="res://Shaders/Read Character.gdshader" id="12_puhe1"]
+[ext_resource type="Texture2D" uid="uid://dya2s48ehr8ru" path="res://Images/Character/CharacterFront.webp" id="13_welwi"]
+[ext_resource type="Script" uid="uid://cfck08s1vl52e" path="res://Scripts/GD Scripts/Select Character/CharacterStats.gd" id="14_huili"]
+[ext_resource type="Texture2D" uid="uid://6dadh2mdjf7l" path="res://Images/Inputs/Gray Button.webp" id="15_t5sy5"]
+[ext_resource type="Script" uid="uid://bydvcqmuhmvpx" path="res://Scripts/GD Scripts/Select Character/Play.gd" id="17_68mlv"]
+[ext_resource type="Texture2D" uid="uid://o3guxwn6byn0" path="res://Images/Inputs/Create.webp" id="18_bx3wd"]
+[ext_resource type="Script" uid="uid://df21em73d78f4" path="res://Scripts/GD Scripts/Debug.gd" id="25_uv8rm"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_b5c66"]
+noise_type = 3
+seed = 1
+frequency = 0.02
+fractal_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_l61i7"]
+seamless = true
+noise = SubResource("FastNoiseLite_b5c66")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xd164"]
+shader = ExtResource("4_welwi")
+shader_parameter/noise = SubResource("NoiseTexture2D_l61i7")
+
+[sub_resource type="QuadMesh" id="QuadMesh_yruvp"]
+size = Vector2(640, -360)
+
+[sub_resource type="GDScript" id="GDScript_d4uqh"]
+resource_name = "CreateCharacterScreen"
+script/source = "extends TextureButton
+func _pressed():
+	get_tree().change_scene_to_file(\"res://Scripts/GD Scripts/Select Character/CreateCharacter.tscn\")
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b5c66"]
+shader = ExtResource("12_puhe1")
+shader_parameter/HatColorOverride = Color(0, 0, 0, 0)
+shader_parameter/ChestColorOverride = Color(0, 0, 0, 0)
+shader_parameter/BootColorOverride = Color(0, 0, 0, 0)
+shader_parameter/ArmorTypeOverride = -1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_puhe1"]
+shader = ExtResource("12_puhe1")
+shader_parameter/HatColorOverride = Color(0, 0, 0, 0)
+shader_parameter/ChestColorOverride = Color(0, 0, 0, 0)
+shader_parameter/BootColorOverride = Color(0, 0, 0, 0)
+shader_parameter/ArmorTypeOverride = -1
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xvb8b"]
+radius = 45.0
+height = 175.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_welwi"]
+shader = ExtResource("12_puhe1")
+shader_parameter/HatColorOverride = Color(0, 0, 0, 0)
+shader_parameter/ChestColorOverride = Color(0, 0, 0, 0)
+shader_parameter/BootColorOverride = Color(0, 0, 0, 0)
+shader_parameter/ArmorTypeOverride = -1
+
+[node name="Node2D" type="Node2D"]
+material = ExtResource("1_yruvp")
+
+[node name="UI Background" type="Sprite2D" parent="."]
+visible = false
+self_modulate = Color(0, 0.768627, 0, 1)
+use_parent_material = true
+position = Vector2(-0.750044, 1.09999)
+scale = Vector2(640, 360)
+texture = ExtResource("2_yruvp")
+
+[node name="BackgroundTop" type="Sprite2D" parent="."]
+visible = false
+use_parent_material = true
+position = Vector2(0, -76.111)
+scale = Vector2(5.556, 4.634)
+texture = ExtResource("3_8helk")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+material = SubResource("ShaderMaterial_xd164")
+mesh = SubResource("QuadMesh_yruvp")
+texture = ExtResource("2_yruvp")
+
+[node name="Cancel UI" type="TextureButton" parent="."]
+offset_left = 295.0
+offset_top = -176.111
+offset_right = 311.0
+offset_bottom = -160.111
+scale = Vector2(1.389, 1.389)
+texture_normal = ExtResource("11_l281y")
+script = ExtResource("8_t5sy5")
+
+[node name="Debug" type="RichTextLabel" parent="."]
+offset_left = -320.0
+offset_top = -180.0
+offset_right = 320.0
+offset_bottom = 180.0
+mouse_filter = 2
+bbcode_enabled = true
+script = ExtResource("25_uv8rm")
+
+[node name="CharacterLabel" type="Label" parent="."]
+offset_left = 35.0
+offset_top = -134.444
+offset_right = 457.0
+offset_bottom = 367.556
+scale = Vector2(0.556, 0.556)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 32
+text = "Name:
+Class:
+Race:"
+script = ExtResource("14_huili")
+
+[node name="Play Character" type="TextureButton" parent="."]
+offset_left = -229.444
+offset_top = 125.556
+offset_right = -165.444
+offset_bottom = 141.556
+scale = Vector2(2.778, 2.778)
+texture_normal = ExtResource("15_t5sy5")
+texture_pressed = ExtResource("8_l281y")
+texture_hover = ExtResource("8_l281y")
+texture_disabled = ExtResource("15_t5sy5")
+texture_focused = ExtResource("15_t5sy5")
+script = ExtResource("17_68mlv")
+
+[node name="Play Character Text" type="RichTextLabel" parent="Play Character"]
+auto_translate_mode = 1
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 22.2
+offset_top = 2.2
+offset_right = 123.2
+offset_bottom = 60.2
+scale = Vector2(0.2, 0.2)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 40
+text = "Play"
+
+[node name="Create New Character" type="TextureButton" parent="."]
+offset_left = -172.222
+offset_top = -172.222
+offset_right = -108.222
+offset_bottom = -108.222
+scale = Vector2(1.111, 1.111)
+texture_normal = ExtResource("18_bx3wd")
+texture_pressed = ExtResource("18_bx3wd")
+script = SubResource("GDScript_d4uqh")
+
+[node name="Camera" type="Camera2D" parent="."]
+
+[node name="Player" type="Sprite2D" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_b5c66")
+position = Vector2(-140, 0)
+scale = Vector2(9, 9)
+texture = ExtResource("13_welwi")
+
+[node name="PlayerL" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_puhe1")
+position = Vector2(-225, 16)
+scale = Vector2(5, 5)
+texture = ExtResource("13_welwi")
+
+[node name="ChangePlayerL" type="TouchScreenButton" parent="PlayerL"]
+scale = Vector2(0.12, 0.12)
+shape = SubResource("CapsuleShape2D_xvb8b")
+action = "ui_left"
+
+[node name="PlayerR" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_welwi")
+position = Vector2(-55, 16)
+scale = Vector2(5, 5)
+texture = ExtResource("13_welwi")
+
+[node name="ChangePlayerR" type="TouchScreenButton" parent="PlayerR"]
+scale = Vector2(0.12, 0.12)
+shape = SubResource("CapsuleShape2D_xvb8b")
+action = "ui_right"

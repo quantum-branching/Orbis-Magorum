@@ -1,0 +1,74 @@
+[gd_scene load_steps=16 format=3 uid="uid://cnlgohsw1nk2n"]
+
+[ext_resource type="Shader" uid="uid://23pc5i4s6lpa" path="res://Shaders/GPU Compute/Map.gdshader" id="1_q74gv"]
+[ext_resource type="Texture2D" uid="uid://trwu6yv1cjsa" path="res://Images/UI/WhiteBackground.webp" id="2_78vka"]
+[ext_resource type="Texture2D" uid="uid://i03ah3n75c3a" path="res://Images/Maps/Grass.webp" id="2_yysy3"]
+[ext_resource type="Texture2D" uid="uid://dtkn2q055g5sn" path="res://Images/Maps/Map.webp" id="3_gkhxw"]
+[ext_resource type="Texture2D" uid="uid://mr8vaehjieee" path="res://Images/Maps/Sand.webp" id="4_gkhxw"]
+[ext_resource type="Texture2D" uid="uid://b6imtfh3qu68i" path="res://Images/Maps/Stone.webp" id="5_q4slr"]
+[ext_resource type="Texture2D" uid="uid://bj83s02glkv2j" path="res://Images/Maps/Water.webp" id="6_k4ofl"]
+[ext_resource type="Script" uid="uid://knkkfes2erau" path="res://Scripts/GD Scripts/Map/map.gd" id="8_gkhxw"]
+[ext_resource type="Texture2D" uid="uid://d1pm5rjj5kcbf" path="res://Images/Inputs/Cursor.webp" id="12_uqg45"]
+[ext_resource type="Script" uid="uid://bqsuxdeqgm7qe" path="res://Scripts/GD Scripts/Map/ExitMap.gd" id="20_dqnuk"]
+[ext_resource type="Script" uid="uid://df21em73d78f4" path="res://Scripts/GD Scripts/Debug.gd" id="21_7tmic"]
+[ext_resource type="Texture2D" uid="uid://buf14568jpm82" path="res://Images/Inputs/Cancel.webp" id="21_wt4sg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dyf76"]
+shader = ExtResource("1_q74gv")
+shader_parameter/Scale = 10.0
+shader_parameter/Map = ExtResource("3_gkhxw")
+shader_parameter/Water = ExtResource("6_k4ofl")
+shader_parameter/Sand = ExtResource("4_gkhxw")
+shader_parameter/Grass = ExtResource("2_yysy3")
+shader_parameter/Stone = ExtResource("5_q4slr")
+
+[sub_resource type="QuadMesh" id="QuadMesh_uqg45"]
+size = Vector2(640, -360)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4o32u"]
+size = Vector2(16, 16)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Map" type="MeshInstance2D" parent="."]
+material = SubResource("ShaderMaterial_dyf76")
+mesh = SubResource("QuadMesh_uqg45")
+texture = ExtResource("2_78vka")
+script = ExtResource("8_gkhxw")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+use_parent_material = true
+scale = Vector2(2.4, 2.006)
+
+[node name="Debug" type="RichTextLabel" parent="."]
+offset_left = -320.0
+offset_top = -180.0
+offset_right = 320.0
+offset_bottom = 180.0
+mouse_filter = 2
+bbcode_enabled = true
+script = ExtResource("21_7tmic")
+
+[node name="Exit" type="TouchScreenButton" parent="."]
+position = Vector2(296, -172)
+texture_normal = ExtResource("21_wt4sg")
+texture_pressed = ExtResource("21_wt4sg")
+shape = SubResource("RectangleShape2D_4o32u")
+action = "Escape"
+visibility_mode = 1
+script = ExtResource("20_dqnuk")
+
+[node name="Player" type="Sprite2D" parent="."]
+position = Vector2(0.5, 0.5)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("12_uqg45")
+
+[node name="Zoom" type="VSlider" parent="."]
+offset_left = -320.0
+offset_top = -180.0
+offset_right = -304.0
+offset_bottom = 180.0
+min_value = -2.0
+max_value = 5.0
+step = 0.0
+value = 2.0
